@@ -6,6 +6,7 @@
       </div>
       <div class="col-sm-3 offset-sm-6">
         Телефон
+        <CartBlock />
       </div>
     </header>
     <nav>
@@ -41,3 +42,10 @@
   color: #f00;
 }
 </style>
+<script>
+import CartBlock from "../components/CartBlock.vue";
+
+export default {
+  components: { CartBlock },
+};
+</script>

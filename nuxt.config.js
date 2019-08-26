@@ -53,4 +53,10 @@ export default {
      */
     // extend(config, ctx) {},
   },
+  generate: {
+    async routes() {
+      const products = await Products.all();
+      return products.map((p) => `/catalog/${p.id}/`);
+    },
+  },
 };

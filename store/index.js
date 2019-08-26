@@ -1,7 +1,7 @@
 import Vuex from "vuex";
 import Products from "../services/Products";
 
-export default function() {
+export default function () {
   return new Vuex.Store({
     state: {
       products: [],
@@ -24,4 +24,4 @@ export default function() {
       },
     },
   });
-};
+}

@@ -1,13 +1,19 @@
 <template>
   <main>
-    <h1 class="mb-4">Каталог товаров</h1>
+    <h1 class="mb-4">
+      Каталог товаров
+    </h1>
     <div class="row">
       <div v-for="item in products" :key="item.id" class="col-sm-4">
         <div class="card">
-          <div class="card-header">{{ item.title }}</div>
+          <div class="card-header">
+            {{ item.title }}
+          </div>
           <div class="card-body">
             <p>{{ item.price }} руб.</p>
-            <nuxt-link :to="'/catalog/' + item.id + '/'">Подробнее</nuxt-link>
+            <nuxt-link :to="'/catalog/' + item.id + '/'">
+              Подробнее
+            </nuxt-link>
           </div>
         </div>
       </div>
@@ -17,13 +23,13 @@
 
 <script>
 export default {
-  async asyncData({ store }) {
-    store.dispatch("LOAD_PRODUCTS");
-  },
   computed: {
-      products() {
+    products() {
       return this.$store.state.products;
     },
+  },
+  async asyncData({ store }) {
+    await store.dispatch("LOAD_PRODUCTS");
   },
 };
 </script>

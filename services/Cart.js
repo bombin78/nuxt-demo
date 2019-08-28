@@ -18,7 +18,7 @@ export default {
     }
   },
   async makeOrder(items, data) {
-    const response =  axios.post("https://vues-hop-backend-demo-082019.herokuapp.com/", {
+    const response =  await axios.post("https://vues-hop-backend-demo-082019.herokuapp.com/", {
       ...data,
       cart: items.reduce((acc, p) => `${acc}${p.product.title} - ${p.quantity}\n`, ""),
     });

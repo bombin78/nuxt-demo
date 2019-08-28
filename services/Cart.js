@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const storageIsEnabled = () => typeof window !== "undefined" && typeof window.localStorage !== "undefined";
 
 export default {
@@ -14,5 +16,11 @@ export default {
     if (storageIsEnabled()) {
       localStorage.setItem("CART_ITEMS", JSON.stringify(items));
     }
+  },
+  async makeOrder(items, data) {
+    return axios.post("https://vues-hop-backend-demo-082019.herokuapp.com/", {
+      ...data,
+      cart: items.reduce((acc, p) => `${acc}${p.product.title} - ${p.quantity}\n`, ""),
+    });
   },
 };

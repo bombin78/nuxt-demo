@@ -27,7 +27,7 @@
           </tr>
         </tfoot>
       </table>
-      <form action="" @submit.prevent="">
+      <form action="" @submit.prevent="makeOrder">
         <div class="form-group">
           <label for="name">Ваше имя</label>
           <input
@@ -40,7 +40,7 @@
           >
         </div>
         <div class="form-group">
-          <label for="phone">Ваше имя</label>
+          <label for="phone">Ваш телефон</label>
           <input
             id="phone"
             v-model="$v.phone.$model"
@@ -68,6 +68,23 @@ export default {
       name: "",
       phone: "",
     };
+  },
+  methods: {
+      async makeOrder() {
+          if (this.$v.$invalid) {
+              this.$v.$touch();
+          } else {
+            const result = await this.$store.dispatch('MAKE_ORDER', {
+                name: this.name,
+                phone: this.phone,
+            });
+            if(result.hasError){
+                alert(result.message);
+            } else {
+                alert("Ваш заказ принят");
+            }
+          }
+      },
   },
   validations: {
     name: {

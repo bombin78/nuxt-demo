@@ -52,6 +52,12 @@ export default function () {
         const items = await Cart.getItems();
         commit("SET_CART", items);
       },
+      async MAKE_ORDER({ state }, data) {
+          if(state.cart.length > 0) {
+              return Cart.makeOrder(state.cart, data);
+          }
+          return { hasError: true, message: "Корзина пуста"};
+      },
     },
     getters: {
       cartItemsCount(state) {

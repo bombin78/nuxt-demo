@@ -27,28 +27,26 @@
           </tr>
         </tfoot>
       </table>
-      <form action="">
+      <form action="" @submit.prevent="">
         <div class="form-group">
           <label for="name">Ваше имя</label>
           <input
-            v-validate="'required'"
-            @blur="$validator.validate('name')"
-            data-vv-name="name"
-            data-vv-as="ваше имя"
             id="name"
+            v-model="$v.name.$model"
+            name="name"
             class="form-control"
+            :class="{ 'is-invalid': $v.name.$error }"
             type="text"
           >
         </div>
         <div class="form-group">
-          <label for="phone">Ваш телефон</label>
+          <label for="phone">Ваше имя</label>
           <input
-            v-validate="'required'"
-            @blur="$validator.validate('phone')"
-            data-vv-name="phone"
-            data-vv-as="ваш телефон"
             id="phone"
+            v-model="$v.phone.$model"
+            name="phone"
             class="form-control"
+            :class="{ 'is-invalid': $v.phone.$error}"
             type="text"
           >
         </div>
@@ -61,8 +59,24 @@
 </template>
 
 <script>
+import { required } from "vuelidate/lib/validators";
+
 export default {
   name: "Cart",
+  data() {
+    return {
+      name: "",
+      phone: "",
+    };
+  },
+  validations: {
+    name: {
+      required,
+    },
+    phone: {
+      required,
+    },
+  },
 };
 </script>
 

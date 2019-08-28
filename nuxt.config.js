@@ -32,7 +32,9 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [
+    { src: "~plugins/vuelidate.js", ssr: true },
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -48,10 +50,7 @@ export default {
    ** Build configuration
    */
   build: {
-    /*
-     ** You can extend webpack config here
-     */
-    // extend(config, ctx) {},
+    vendor: ["vuelidate"],
   },
   generate: {
     async routes() {

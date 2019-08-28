@@ -27,6 +27,35 @@
           </tr>
         </tfoot>
       </table>
+      <form action="">
+        <div class="form-group">
+          <label for="name">Ваше имя</label>
+          <input
+            v-validate="'required'"
+            @blur="$validator.validate('name')"
+            data-vv-name="name"
+            data-vv-as="ваше имя"
+            id="name"
+            class="form-control"
+            type="text"
+          >
+        </div>
+        <div class="form-group">
+          <label for="phone">Ваш телефон</label>
+          <input
+            v-validate="'required'"
+            @blur="$validator.validate('phone')"
+            data-vv-name="phone"
+            data-vv-as="ваш телефон"
+            id="phone"
+            class="form-control"
+            type="text"
+          >
+        </div>
+        <button class="btn btn-primary">
+          Оформить заказ
+        </button>
+      </form>
     </div>
   </div>
 </template>
